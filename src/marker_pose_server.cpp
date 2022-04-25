@@ -3,6 +3,7 @@
 #include "fiducial_msgs/FiducialTransformArray.h"
 #include "geometry_msgs/Twist.h"
 #include "robot_msgs/mrkrPos.h"
+#include <queue> queue<int>q;
 
 using namespace ros;
 using namespace std;
@@ -16,6 +17,22 @@ class marker_pose_srv
         ros::Subscriber sub1;
         ros::ServiceServer srv1;
 
+        struct trn:
+        {
+            double x;
+            double y;
+            double z;
+        };
+
+        struct rot:
+        {
+            double x;
+            double y;
+            double z;
+        };
+
+
+
     public:
         marker_pose_srv()
         {
@@ -25,7 +42,7 @@ class marker_pose_srv
 
         void mrkrPoseCallback(const fiducial_msgs::FiducialTransformArray &msg)
         {
-
+            queue.qush()
         }
 
         bool mrkrPoseSrv(robot_msgs::)
@@ -34,6 +51,11 @@ class marker_pose_srv
         }
 
         void poseAvg()
+        {
+
+        }
+
+        void Q2E()
         {
 
         }
