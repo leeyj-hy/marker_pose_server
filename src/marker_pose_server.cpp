@@ -46,7 +46,17 @@ class marker_pose_srv
 
         void mrkrPoseCallback(const fiducial_msgs::FiducialTransformArray &msg)
         {
-
+            for(int i=0; i<msg.transforms.size() ; i++)
+            {
+                this -> trn_x = msg.transforms[i].transform.translation.x;
+                this -> trn_y = msg.transforms[i].transform.translation.y;
+                this -> trn_z = msg.transforms[i].transform.translation.z;
+                this -> q_x = msg.transforms[i].transform.rotation.x;
+                this -> q_y = msg.transforms[i].transform.rotation.y;
+                this -> q_z = msg.transforms[i].transform.rotation.z;
+                this -> q_w = msg.transforms[i].transform.rotation.w;
+                ROS_INFO("pose received");
+            }
         }
 
         bool mrkrPoseSrv(robot_msgs::mrkrPos::Request &req,
@@ -57,10 +67,15 @@ class marker_pose_srv
             res.trn_x = trn_x;
             res.trn_y = trn_y;
             res.trn_z = trn_z;
-            res.rot_x = _Y;
+            res.rot_x = _R;
             res.rot_y = _P;
-            res.rot_z = _R;
+            res.rot_z = _Y;
 
+            ROS_INFO("Pose Service returned!");
+            ROS_INFO("R : %f", _R);
+            ROS_INFO("P : %f", _P);
+            ROS_INFO("Y : %f", _Y);
+            return true;
             
         }
 
