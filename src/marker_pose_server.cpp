@@ -70,6 +70,7 @@ class marker_pose_srv
             res.rot_x = _R;
             res.rot_y = _P;
             res.rot_z = _Y;
+            res.is_pos_return = true;
 
             ROS_INFO("Pose Service returned!");
             ROS_INFO("R : %f", _R);
